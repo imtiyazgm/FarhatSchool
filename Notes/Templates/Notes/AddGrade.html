@@ -1,0 +1,33 @@
+{% extends 'Notes/base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="row m-4">
+	    <div class="col-md-6 mt-4">
+		    <div class="card card-body m-1 bg-info">
+                <div class=" m-1 text-end">
+                    <a class=" btn btn-danger btn-sm"  href="{% url 'GradeList' %}">BACK</i></a>
+                 </div>
+                 <div class="card-header badge bg-primary m-2 rounded-pill">
+                    <h5> Add Grade here..... </h5>
+                 </div>
+
+                    <form method="post">{% csrf_token %}
+                            {{ form.as_p }}
+                        <input class="btn btn-primary btn-sm" type="submit" value="Add Grade">
+                    </form>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+{% endif %}    
+
+{% endblock content %}
+
+

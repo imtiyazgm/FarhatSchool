@@ -1,0 +1,41 @@
+
+{% extends 'Notes/base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+   <div class="row ms-4 ">
+	<div class="col mt-4 bg-info">
+		<div class="card card-body m-4">
+        <div class="card-header badge bg-primary">
+                    <h5> Are you Sure you want to delete {{ x.chapterName }} ?? </h5>
+        </div>
+                        <form action="" method="POST" >
+                            {% csrf_token %}
+                            
+                            <div class="card-header badge bg-info">
+                                <a class="btn btn-warning" href="{% url 'CatList' %}">Cancel</a>    
+                            </div>
+                            <div class="card-header badge bg-info">
+                                <input class="btn btn-danger" type="submit" name="confim">    
+                            </div>
+
+                            
+                        </form>
+        </div>
+    </div>
+</div>
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+{% endif %} 
+
+    
+{% endblock content %}
+
+
+
+

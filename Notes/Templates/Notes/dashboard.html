@@ -1,0 +1,136 @@
+
+{% extends 'Notes/base.html' %}
+{% block content %}      
+
+{% if user.is_authenticated %}
+
+   <div class="row bg-success text-center m-2">
+                <div class="col-3  bg-info " >    
+                    <button type="button" class="btn btn-danger m-1">
+                            Notes <span class="badge bg-secondary">{{ Total_Notes}} </span>
+                    </button>
+                </div>
+
+                <div class="col-3 bg-info " >
+
+                <a href="{% url 'GradeList'%}"> 
+                    <button type="button" class="btn btn-success m-1">
+                            Grades<span class="badge bg-secondary">{{ Total_Grade}} </span>
+                    </button>   
+                </a>        
+                
+                
+                
+                </div>
+                
+                
+                <div class="col-3 bg-info  " >
+                    <a href="{% url 'SubList'%}"> 
+                        <button type="button" class="btn btn-primary m-1">
+                                Subjects <span class="badge bg-secondary">{{ Total_sub }}</span>
+                        </button> 
+                    </a>
+                </div>
+                </a>
+                
+                <div class="col-3 bg-info " >
+                    <a href="{% url 'CatList'%}"> 
+                    <button type="button" class="btn btn-warning  m-1">
+                            Categoty <span class="badge bg-secondary">{{ T_Dtype}}</span>
+                    </button>   
+                    </a>    
+                </div>
+    </div>
+
+<div class="row">
+        <div class="col mx-2">
+            
+            <div class="card card-body bg-info  form-control " style="text-transform: uppercase";>
+                    <form action="" method="GET" class="form-group ms-4"  >
+                            {{myfilter.form}}
+                            <button class="btn-sm btn-primary" type="submit">Search</button>
+                            
+                    </form>
+                    
+            </div>
+            
+        </div>
+   </div>
+
+
+ <div class="row">
+	<div class="col  m-2">
+		<div class="card card-body bg-info">   
+            <div class="row">
+                <div class=" col-2 card-header badge bg-primary">
+                    <a href="{% url 'Add_Notes' %}" class="btn btn-danger" type="submit"> + Notes </a>
+                </div> 
+                <div class=" col-8 card-header badge bg-primary">
+                    <h4 style="text-transform: uppercase;"> Notes Index </h4>  
+                </div>    
+                <div class=" col-2 card-header badge bg-primary">
+                    <a href="{% url 'dashboard'%}" class="btn btn-warning" type="submit"> Clear </a>
+                </div>    
+            </div>    
+                <table class="table mt-2 bg-secondary">
+                        <thead class="text-uppercase bg-success ">
+                            <tr>
+                                <th>Chapter Name </th>
+                                <th>Grade </th>
+                                <th>Subject </th>
+                                <th>DocType </th>
+                                <th>Download </th>
+                                <th colspan= "2"> Action </th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody>
+                    {% for x in notesList  %}
+                    
+                            <tr>
+                                <td class="fw-bold">{{x.chapterName}} </td>
+                                <td class="fw-bold">{{x.GradeName}} </td>
+                                <td class="fw-bold">{{x.Subject}} </td>
+                                <td class="fw-bold">{{x.NotesType}} </td>
+                                <td>
+                                     <a class = "btn btn-primary btn-sm" href="{{ x.Notesfile.url }}" target="_blank">View</a>
+                                
+                                </td>
+                                                                
+                                <td class="fw-bold"> <a class = "btn btn-warning btn-sm" href="{% url 'NotesUpdate' x.id %}">Edit</a></td>
+                                <td class="fw-bold"> <a class = "btn btn-danger btn-sm " href="{% url 'Delete_Notes' x.id %}">Delete</a></td>
+                                
+                            </tr>
+                    {% endfor %}
+                        
+                        </tbody>   
+                </table> 
+               
+                </div>
+            </div>
+    </div>
+  
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+    
+{% endif %}
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

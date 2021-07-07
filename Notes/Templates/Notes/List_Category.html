@@ -1,0 +1,50 @@
+{% extends 'Notes/base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-md-6 mt-4">
+            
+            <div class="card card-body bg-secondary "> 
+                <div class=" m-1 text-end">
+                    <a class=" btn btn-danger "  href="{% url 'dashboard' %}">Back</a>
+                 </div>
+                <div class="card-header bg-warning text-center text-uppercase ">
+                    <h5>Category List </h5>
+                </div>
+                <table class="table table-sm bg-info mt-2">
+                    <thead>
+                        <tr>
+                            <th> Tag Name </th>
+                            <th> Action </th>
+                        </tr>
+                     </thead>
+
+                    <tbody>
+                        {% for x in catlist %}
+                                <tr>
+                                    <td> {{x.Notes_Type}} </td>
+                                    <td> <a class = "btn btn-warning btn-sm" href="{% url 'Edit_Tag' x.id %}">Edit</a></td>
+                                    <td> <a class = "btn btn-danger btn-sm " href="{% url 'Delete_Tag' x.id %}">Delete</a></td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>   
+                </table> 
+                 <td><a class="btn  btn-warning" href="{% url 'Add_Tag' %}"> ADD NEW TAG  </a></td>
+            </div>  
+              
+        </div>    
+    </div>    
+  
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+{% endif %} 
+
+{% endblock content %}
+
+

@@ -1,0 +1,45 @@
+{% extends 'Notes/base.html' %}
+{% block content %}
+   
+<div class="card text-dark bg-info m-4" style="max-width : 20rem" >
+  <div class="card-header text-center bg-success text-white"> <h6>User Registration</h6></div>
+    <div class="card-body bg-light ">
+        <form action="" method="POST">
+            
+            {% csrf_token %}
+            
+            <div class="card">
+            
+            <div class="card-body ">
+                <p class="form-label">{{form.username.label}}</p>
+                <p class="form-control">    {{form.username}}</p>
+                <p class="form-label"> {{form.email.label}}</p>
+                <p class="form-control">    {{form.email}}</p>
+                <p class="form-label"> {{ form.password1.label }}</p>
+                <p class="form-control">    {{ form.password1 }}</p>         
+                <p class="form-label" > {{ form.password2.label }}</p>
+                <p class="form-control">    {{ form.password2 }}</p>
+                <input type="submit"  name="Register" class="btn btn-warning">
+
+            </div>
+            </div>
+        </form>
+    
+    </div>
+    {{form.errors}}
+    <div class="bg-success">
+        <p class = "text-center text-white">Already registerd?...<a  class = "text-white" href="{% url 'Login_Page' %}"> Login Here</a> </p>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+

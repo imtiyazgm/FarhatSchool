@@ -1,0 +1,50 @@
+{% extends 'Notes/base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="row">
+        <div class="col mt-4">
+             
+            <div class="card card-body m-4">
+                <div class=" m-1 text-end">
+                    <a class=" btn btn-danger "  href="{% url 'dashboard' %}">Back</a>
+                 </div>
+                <div class="card-header badge bg-primary">
+                    <h5>Subject List </h5>
+                </div>   
+                <table class="table table-sm table-danger table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Subject Name</th>
+                            <th colspan= "2"> Action </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in object_list  %}
+                        <tr>
+                            <td>{{x.id}}</td>
+                            <td>{{x.Subject_Name}}</td>
+                            <td> <a class = "btn btn-warning btn-sm" href="{% url 'Edit_Sub' x.id %}">Edit</a></td>
+                            
+                        </tr>                            
+                        {% endfor %}
+                    </tbody>
+                </table>
+                 <a class="btn  btn-warning mt-4" href="{% url 'Add_Sub' %}"> ADD NEW SUBJECT  </a>
+            </div>
+        </div>
+   </div>
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+
+{% endif %}   
+{% endblock content %}
+
+

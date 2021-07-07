@@ -1,0 +1,45 @@
+{% extends 'Notes/base.html' %}
+
+{% block content %}
+    
+{% if user.is_authenticated %}    
+   <div class="row ">
+        <div class="col mt-2 text-center">
+            <div class="card card-body bg-info m-2 " style="max-width : 40rem"> 
+                 <div class=" m-1 text-end">
+                    <a class=" btn btn-danger "  href="{% url 'dashboard' %}">BACK</i></a>
+                 </div>
+                <div class="card-header badge bg-primary">
+                    <h5>Select the Grade </h5>
+                </div>
+                  <table class="table">
+                        <thead>
+                            <thead>
+                        <tr>
+                            <th>Grade Name</th>
+                            <th colspan= "2"> Action </th>
+                        </tr>
+                        </thead>   
+                        <tbody>
+                                {% for x in gradeList  %}
+                                    <tr>
+                                    <td><a class="btn btn-success " href="{% url 'G_NoteList' x.id %}"> {{x.Grade_Name}} </a></td>
+                                     <td> <a class = "btn btn-warning btn-sm" href="{% url 'EditGrade' x.id %}">Edit</a></td>
+                                     
+                                    </tr>
+                                {% endfor %}                               
+                         </tbody>   
+                    </table>
+                                <a class="btn  btn-warning" href="{% url 'Add_Grade' %}"> ADD NEW CLASS  </a>
+            </div>  
+        </div>    
+    </div>    
+
+{% else %}
+    <h1>Please login</h1>
+{% endif %}
+
+{% endblock content %}
+
+
+                               

@@ -1,0 +1,37 @@
+
+{% extends 'Notes/base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+   <div class="row m-4 ">
+	    <div class="col-md-6 mt-4 bg-info">
+		    <div class="card card-body m-4">
+                
+                 <div class="card-header badge bg-primary">
+                    <h5> Upload the here..... </h5>
+                </div>
+                <form action="" method="POST" >
+                    {% csrf_token %}
+                    <table class="table table-sm table-danger">
+                       {{ form.as_table }}                      
+                    </table>
+                    <input class="btn btn-info" type="submit" name="submit">
+                 </form>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+{% endif %}    
+
+
+{% endblock content %}
+
+
+
+

@@ -1,0 +1,43 @@
+{% extends 'Notes/base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="row m-4 ">
+        
+
+        
+	    <div class="col-md-6  ">
+            
+		    <div class="card card-body bg-info m-2 ">
+                <div class=" m-1 text-end">
+                    <a class=" btn btn-danger "  href="{% url 'dashboard' %}">Back</a>
+                 </div> 
+                 <div class="card-header badge bg-success rounded-pill">
+                    <h5 style="text-transform: uppercase;"> Upload Notes here </h5>
+                </div>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="mb-3 text-center">
+                          <input class="btn btn-success btn-sm" type="submit" value="Upload Notes">
+                    </div>       
+                    
+                
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+{% endif %}    
+
+{% endblock content %}
+
+

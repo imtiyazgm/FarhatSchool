@@ -1,0 +1,65 @@
+<style>
+.msg { margin-right : 20px;
+       color: #fff ;
+      
+      }
+ nav { background-color :#0010f7; font-family: 'Times New Roman', Times, serif; text-transform: capitalize; }   
+
+li a {
+  background-color :#2596be; margin-right: 5px; border-radius: 30px;
+}
+
+ li a:hover {
+  background-color :#246335
+}
+</style>
+
+<nav class=" mx-2 navbar navbar-expand-lg navbar-dark  sticky-top" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Farhat|Notes</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+      {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link active  " aria-current="page" href="{% url 'dashboard' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active  " aria-current="page" href="{% url 'Add_Notes' %}">Add Notes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'GradeList' %}"> Grade</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'SubList' %}">SubList</a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link active" href=" {% url 'CatList' %}">Category</a>
+                </li>
+                
+        {% else %}
+                
+                <li class="nav-item">
+                  <a class="nav-link active">Please Login ....</a>
+                </li> 
+        {% endif %}              
+      </ul>
+    </div>
+    
+{% if user.is_authenticated %}
+   <span class= "msg" >Hi - {{ request.user}} </span>
+   <span class= "msg"><a class ="btn btn-danger" href="{% url 'logou_tUser' %}">Logout</a></span>
+{% endif %}
+  
+  
+  </div>
+  
+
+</nav>
+
+
+

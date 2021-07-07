@@ -1,0 +1,36 @@
+
+{% extends 'Notes/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}      
+                <div class="row"> 
+                    <div class="col-sm-4">
+                        
+                            <div class="form-group mt-4 ms-4">
+                                <h4> ...EDIT Grade ..</h4> 
+                                <hr>
+                                <form method="POST" >
+                                   {% csrf_token %} 
+                                   
+                                    {{ form.as_p}}
+                                   
+                                    <button class="btn btn-primary">UPDATE Grade</button>
+                                </form>   
+                            </div>   
+                    </div>
+    
+</div>
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>
+
+{% endif %} 
+
+
+{% endblock content %}
+
+

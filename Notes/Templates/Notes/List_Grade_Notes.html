@@ -1,0 +1,73 @@
+{% extends 'Notes/base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="row">
+        <div class="col m-2 ">
+            <div class="card card-body bg-info">
+                    <form action="" method="GET">
+                            {{Gfilter.form}}
+                            <button class="btn btn-primary" type="submit">Search</button>
+                    </form>                
+            </div>
+        </div>
+</div>
+            <div class="row">
+            <div class="col  m-2">
+            <div class="card card-body bg-info">   
+             <div class="row">
+                    <div class=" col-10 card-header badge bg-primary">
+                        <h4 style="text-transform: uppercase;"> Notes Index  </h4>    
+                    </div>    
+                    <div class=" col-2 card-header badge bg-primary">
+                        <a href="{% url 'GradeList' %}"   class="btn btn-warning" type="submit"> Back </a>
+                    </div>    
+             </div>    
+               
+   
+   <table class="table mt-2 bg-secondary">
+                        <thead class="text-uppercase bg-warning">
+                            <tr>
+                                <th>Chapter Name </th>
+                               
+                                <th>Subject </th>
+                                <th>DocType </th>
+                                <th>Download </th>
+                                <th colspan= "2"> Action </th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody>
+                    {% for x in GradeNoteList  %}
+                    
+                            <tr>
+                                <td class="fw-bold">{{x.chapterName}} </td>
+                                
+                                <td class="fw-bold">{{x.Subject}} </td>
+                                <td class="fw-bold">{{x.NotesType}} </td>
+                                <td> <a href="{{x.Notesfile.url}}" target="_blank" class="btn btn-primary"> Download </a> </td>
+                                
+                                <td class="fw-bold"> <a class = "btn btn-warning btn-sm" href="{% url 'NotesUpdate' x.id %}">Edit</a></td>
+                                <td class="fw-bold"> <a class = "btn btn-danger btn-sm " href="{% url 'Delete_Notes' x.id %}">Delete</a></td>
+                                
+                            </tr>
+                    {% endfor %}
+                        
+                        </tbody>   
+                </table> 
+{% else %}
+    <div class="card">
+        <div class="card-body">
+                You are now allowed !
+        </div>
+    </div>  
+    </div>  
+    </div>  
+{% endif %}
+    
+
+    
+{% endblock content %}
+
+
